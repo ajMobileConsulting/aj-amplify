@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install Amplify CLI
         run: npm install -g @aws-amplify/cli
@@ -26,6 +26,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Show npm logs on failure
+        if: failure()
+        run: |
+          echo "=== NPM Debug Log ==="
+          cat /home/runner/.npm/_logs/* || true
 
       - name: Deploy Amplify backend
         run: npx ampx pipeline-deploy --branch main --app-id ${{ secrets.AWS_APP_ID }}
