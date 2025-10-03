@@ -34,4 +34,4 @@ jobs:
           cat /home/runner/.npm/_logs/*.log || true
 
       - name: Deploy Amplify backend
-        run: npx ampx pipeline-deploy --branch main --app-id ${{ secrets.AWS_APP_ID }}
+        run: npx ampx pipeline-deploy --branch main --app-id d19ocoyp7zassv
