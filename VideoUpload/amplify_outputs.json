@@ -112,7 +112,34 @@
       {
         "name": "amplifyTeamDrive",
         "bucket_name": "amplify-ajamplify-leaveit-amplifyteamdrivebucket28-maofxedsbzou",
-        "aws_region": "us-east-2"
+        "aws_region": "us-east-2",
+        "paths": {
+          "user-videos/*": {
+            "guest": [
+              "get",
+              "list"
+            ]
+          },
+          "user-videos/${cognito-identity.amazonaws.com:sub}/*": {
+            "entityidentity": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ]
+          },
+          "video-submissions/*": {
+            "authenticated": [
+              "get",
+              "list",
+              "write"
+            ],
+            "guest": [
+              "get",
+              "list"
+            ]
+          }
+        }
       }
     ]
   },
