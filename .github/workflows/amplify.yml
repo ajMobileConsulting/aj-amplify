@@ -27,5 +27,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Deploy backend
+      - name: Deploy Amplify backend
         run: npx ampx pipeline-deploy --branch main --app-id ${{ secrets.AWS_APP_ID }}
