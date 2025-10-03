@@ -31,7 +31,7 @@ jobs:
         if: failure()
         run: |
           echo "=== NPM Debug Log ==="
-          cat /home/runner/.npm/_logs/* || true
+          cat /home/runner/.npm/_logs/*.log || true
 
       - name: Deploy Amplify backend
         run: npx ampx pipeline-deploy --branch main --app-id ${{ secrets.AWS_APP_ID }}
