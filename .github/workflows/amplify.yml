@@ -17,8 +17,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Amplify CLI
-        run: npm install -g @aws-amplify/cli
+      - name: Install Amplify Backend CLI
+        run: npm install -g @aws-amplify/backend-cli
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -27,11 +27,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Show npm logs on failure
-        if: failure()
-        run: |
-          echo "=== NPM Debug Log ==="
-          cat /home/runner/.npm/_logs/*.log || true
-
       - name: Deploy Amplify backend
-        run: npx ampx pipeline-deploy --branch main --app-id d19ocoyp7zassv
+        run: npx ampx pipeline-deploy --branch main --app-id ${{ secrets.AWS_APP_ID }}
